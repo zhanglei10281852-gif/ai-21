@@ -18,14 +18,6 @@ var (
 	ErrForbidden         = errors.New("forbidden")
 )
 
-type AuthenticationError struct {
-	Reason string
-}
-
-func (e AuthenticationError) Error() string {
-	return fmt.Sprintf("authentication failed: %s", e.Reason)
-}
-
 type FieldError struct {
 	Field   string
 	Message string

@@ -116,9 +116,7 @@ func (s *AuthService) Authenticate(ctx context.Context, token string) (domain.Pr
 	})
 	if err != nil {
 		if errors.Is(err, domain.ErrNotFound) {
-			return domain.Principal{}, domain.AuthenticationError{
-				Reason: "session was not found",
-			}
+			return domain.Principal{}, fmt.Errorf("invalid session: %w", domain.ErrUnauthenticated)
 		}
 		return domain.Principal{}, fmt.Errorf("authenticate session: %w", err)
 	}
